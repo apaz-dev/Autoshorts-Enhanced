@@ -1,12 +1,16 @@
 // Copyright (c) 2024 Shafil Alam
 
-import ollama, { ModelResponse } from "ollama";
+import { Ollama, ModelResponse } from "ollama";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from "openai/resources";
 
 import { VideoGenType } from "./videogen";
 import { INITIAL_AI_PROMPT, messageVideoAIPrompt, quizVideoAIPrompt, rankVideoAIPrompt, ratherVideoAIPrompt, topicVideoAIPrompt } from "./const";
+
+// Configure Ollama host
+const ollamaHost = process.env.OLLAMA_HOST || 'http://localhost:11434';
+const ollama = new Ollama({ host: ollamaHost });
 
 /** 
  * Function to convert video type to AI prompt
