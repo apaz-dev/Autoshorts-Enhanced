@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Shafil Alam
 
-import ollama, { ModelResponse } from "ollama";
+import ollama, { ModelResponse, Ollama } from "ollama";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from "openai/resources";
@@ -459,6 +459,17 @@ export class OllamaAIGen extends AIGen {
     static DEFAULT_MODEL = "llama3.2";
 
     /**
+     * Get configured Ollama client
+     */
+    private static getOllamaClient(): Ollama {
+        const ollamaHost = process.env.OLLAMA_HOST;
+        if (ollamaHost) {
+            return new Ollama({ host: ollamaHost });
+        }
+        return ollama;
+    }
+
+    /**
      * Generate AI text using Ollama local API
      * @param log - Log function
      * @param systemPrompt - System prompt
@@ -471,6 +482,7 @@ export class OllamaAIGen extends AIGen {
         const model = options?.model ?? this.DEFAULT_MODEL;
         log(`Calling Ollama local API with model: ${model}`);
 
+        const ollamaClient = this.getOllamaClient();
         let aiResponse = '';
         try {
 
@@ -480,7 +492,7 @@ export class OllamaAIGen extends AIGen {
                 { role: 'user', content: systemPrompt },
                 { role: 'user', content: INITIAL_AI_PROMPT + userPrompt }
             ];
-            const response = await ollama.chat({ model: model, messages: messages, stream: true })
+            const response = await ollamaClient.chat({ model: model, messages: messages, stream: true })
 
             for await (const part of response) {
                 const msgChunk = part.message.content;
@@ -520,7 +532,7 @@ export class OllamaAIGen extends AIGen {
 
                 messages.push({ role: 'user', content: prompt });
 
-                const response = await ollama.chat({ model: model, messages: messages, stream: true, format: 'json' });
+                const response = await ollamaClient.chat({ model: model, messages: messages, stream: true, format: 'json' });
 
                 let res = '';
                 for await (const part of response) {
@@ -559,7 +571,8 @@ export class OllamaAIGen extends AIGen {
      */
     static async getModels(): Promise<string[]> {
         // Get all Ollama models
-        const response = await ollama.list();
+        const ollamaClient = this.getOllamaClient();
+        const response = await ollamaClient.list();
         const models = response.models.map((model: ModelResponse) => model.name);
 
         return models;

@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "11434:11434"
+    environment:
+      - SERVER_IP=0.0.0.0
+      - SERVER_PORT=3001
+      - SERVER_RES_PATH=res
+      - SERVER_TEMP_PATH=video_temp
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    volumes:
+      - ./res:/app/res
+      - ./video_temp:/app/video_temp
+    networks:
+      - app-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # Si tienes Ollama corriendo por separado, puedes agregar este servicio
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama:/root/.ollama
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+# volumes:
+#   ollama:
