@@ -1,6 +1,25 @@
 # Use an official Node.js runtime as a parent image
 FROM node:lts
 
+# Install system dependencies required for native modules
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    make \
+    g++ \
+    libxi-dev \
+    libglu1-mesa-dev \
+    libglew-dev \
+    pkg-config \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    && ln -sf python3 /usr/bin/python \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory for the backend
 WORKDIR /app
 
@@ -29,7 +48,7 @@ WORKDIR /app/ui
 COPY ui/package*.json ./
 
 # Install frontend dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copy the frontend source code
 COPY ui ./

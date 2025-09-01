@@ -86,7 +86,7 @@ export const TableAdvancedOptions = ({ advancedOptions }: { advancedOptions: Vid
     return (
         <div>
             <Accordion>
-                <AccordionItem title="Main Options" startContent={<FaCogs />}>
+                <AccordionItem title="Main Options" startContent={<span>⚙️</span>}>
                     <Table shadow="lg" aria-label="Main Options">
                         <TableHeader columns={columns}>
                             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
@@ -100,7 +100,7 @@ export const TableAdvancedOptions = ({ advancedOptions }: { advancedOptions: Vid
                         </TableBody>
                     </Table>
                 </AccordionItem>
-                <AccordionItem title="Subtitle Options" startContent={<FaTextWidth />}>
+                <AccordionItem title="Subtitle Options" startContent={<span>🇹</span>}>
                     <Table shadow="lg" aria-label="Subtitle Options">
                         <TableHeader columns={columns}>
                             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
@@ -114,7 +114,7 @@ export const TableAdvancedOptions = ({ advancedOptions }: { advancedOptions: Vid
                         </TableBody>
                     </Table>
                 </AccordionItem>
-                <AccordionItem title="TTS Options" startContent={<FaFileAudio />}>
+                <AccordionItem title="TTS Options" startContent={<span>💽</span>}>
                     <Table shadow="lg" aria-label="TTS Options">
                         <TableHeader columns={columns}>
                             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
@@ -128,7 +128,7 @@ export const TableAdvancedOptions = ({ advancedOptions }: { advancedOptions: Vid
                         </TableBody>
                     </Table>
                 </AccordionItem>
-                <AccordionItem title="Image Options" startContent={<FaImage />}>
+                <AccordionItem title="Image Options" startContent={<span>🖼️</span>}>
                     <Table shadow="lg" aria-label="Image Options">
                         <TableHeader columns={columns}>
                             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
@@ -142,7 +142,7 @@ export const TableAdvancedOptions = ({ advancedOptions }: { advancedOptions: Vid
                         </TableBody>
                     </Table>
                 </AccordionItem>
-                <AccordionItem title="Internal Options" startContent={<FaCog />}>
+                <AccordionItem title="Internal Options" startContent={<span>⚙️</span>}>
                     <Table shadow="lg" aria-label="Internal Advanced Options">
                         <TableHeader columns={columns}>
                             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}

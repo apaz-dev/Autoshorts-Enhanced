@@ -9,8 +9,6 @@ import { WavyBackground } from "@/components/wavy-background";
 import AIGen from "@/components/ai";
 import { VideoGenerator } from "@/components/video";
 
-import { FaCode, FaMagic } from "react-icons/fa";
-
 export default function Home() {
   return (
     <WavyBackground speed="slow">
@@ -21,7 +19,7 @@ export default function Home() {
               <Tab key="ai" title={
                 <Tooltip showArrow={true} offset={22} content="Generate with AI">
                   <div className="flex items-center gap-2">
-                    <FaMagic />
+                    <span>✨</span>
                     <span>Generate with AI</span>
                   </div>
                 </Tooltip>
@@ -31,7 +29,7 @@ export default function Home() {
               <Tab key="manual" title={
                 <Tooltip showArrow={true} offset={22} content="Generate Manually">
                   <div className="flex items-center gap-2">
-                    <FaCode />
+                    <span>⚙️</span>
                     <span>Generate Manually</span>
                   </div>
                 </Tooltip>

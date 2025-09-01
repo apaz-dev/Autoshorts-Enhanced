@@ -20,37 +20,37 @@ import { BACKEND_ENDPOINT } from '@/config/backend';
 import { defaultVideoOptions, VideoOptions } from '@/config/options';
 import { MessageVideoData, QuizVideoData, RankVideoData, RatherVideoData, TopicVideoData, VideoData } from '@/config/video';
 
-import { FaAngleDown, FaArrowLeft, FaArrowRight, FaCogs, FaComment, FaCommentAlt, FaImage, FaList, FaMagic, FaNewspaper, FaPhone, FaPlus, FaQuestion, FaQuestionCircle, FaSave, FaSearch, FaTextHeight, FaTrash, FaUpload, FaVolumeUp } from 'react-icons/fa';
+// Removed react-icons/fa import - using emojis instead
 
 const videoTypes = [
     {
         type: "message",
         name: "Message",
-        icon: <FaComment />,
+        icon: <span>💬</span>,
         description: "Send a message to a person"
     },
     {
         type: "topic",
         name: "Topic",
-        icon: <FaNewspaper />,
+        icon: <span>📜</span>,
         description: "Create a topic video"
     },
     {
         type: "quiz",
         name: "Quiz",
-        icon: <FaQuestion />,
+        icon: <span>❓</span>,
         description: "Create a quiz video"
     },
     {
         type: "rank",
         name: "Rank",
-        icon: <FaList />,
+        icon: <span>📊</span>,
         description: "Create a rank video"
     },
     {
         type: "rather",
         name: "Rather",
-        icon: <FaQuestionCircle />,
+        icon: <span>🤔</span>,
         description: "Create a rather video"
     }
 ];
@@ -198,7 +198,7 @@ export function VideoGenerator({ json = null, isAI = false, options = null }: { 
                     : <div className="flex flex-row items-center gap-4 justify-center">
                         <Dropdown>
                             <DropdownTrigger>
-                                <Button startContent={selectedType.icon} endContent={<FaAngleDown />}>{selectedType.name}</Button>
+                                <Button startContent={selectedType.icon} endContent={<span>⬇️</span>}>{selectedType.name}</Button>
                             </DropdownTrigger>
                             <DropdownMenu onAction={(key) => setSelectedType(videoTypes.find(type => type.type === key.toString())!)} >
                                 {videoTypes.map(type => <DropdownItem key={type.type} description={type.description} startContent={type.icon}>{type.name}</DropdownItem>)}
@@ -213,7 +213,7 @@ export function VideoGenerator({ json = null, isAI = false, options = null }: { 
                     <>
                         <Divider />
                         <Accordion>
-                            <AccordionItem startContent={<FaCogs />} title="Advanced Options" subtitle='Change options such as AI model, TTS voice, background music, etc.'>
+                            <AccordionItem startContent={<span>⚙️</span>} title="Advanced Options" subtitle='Change options such as AI model, TTS voice, background music, etc.'>
                                 <AdvancedOptions setAdvancedOptions={setAdvancedOptions} />
                             </AccordionItem>
                         </Accordion>
@@ -221,7 +221,7 @@ export function VideoGenerator({ json = null, isAI = false, options = null }: { 
                 }
                 <Divider />
                 <div className="flex flex-row items-center gap-4 justify-center">
-                    <Button className="mt-4" onClick={handleGenerateVideo} startContent={<FaMagic />} variant='shadow' color='primary' size='lg'>Render Video</Button>
+                    <Button className="mt-4" onClick={handleGenerateVideo} startContent={<span>✨</span>} variant='shadow' color='primary' size='lg'>Render Video</Button>
                 </div>
                 <ConfirmModal confirmModal={confirmModal} advancedOptions={advancedOptions} renderVideo={renderVideo} usedDefaultOptions={usedDefaultOptions} />
                 <Modal isOpen={emptyDataModal.isOpen} onOpenChange={emptyDataModal.onOpenChange}>
@@ -255,8 +255,8 @@ export const RenderingOutput = ({ renderResult, genError, isGenerated, videoId }
                     <p className={subtitle({ size: 'sm' })}>The video has been rendered successfully. You can download it from the link below.</p>
                     <Code>{"video.mp4"}</Code>
                     <video src={`${BACKEND_ENDPOINT}/getVideo?id=${videoId}`} controls width={300} />
-                    <Button color='primary' variant='shadow' startContent={<FaSave />} onClick={() => window.location.href = `${BACKEND_ENDPOINT}/getVideo?id=${videoId}`}>Download Video</Button>
-                    <Button size="sm" startContent={<FaArrowLeft />} onClick={() => window.location.reload()}>Go Back</Button>
+                    <Button color='primary' variant='shadow' startContent={<span>💾</span>} onClick={() => window.location.href = `${BACKEND_ENDPOINT}/getVideo?id=${videoId}`}>Download Video</Button>
+                    <Button size="sm" startContent={<span>⬅️</span>} onClick={() => window.location.reload()}>Go Back</Button>
                 </div>
             </>
             :
@@ -266,7 +266,7 @@ export const RenderingOutput = ({ renderResult, genError, isGenerated, videoId }
                         <p className={title()}>Error Rendering Video</p>
                         <p className={subtitle({ size: 'sm' })}>An error occurred while rendering the video. Please check the error message below.</p>
                         <Chip color='danger' variant='shadow'>{genError}</Chip>
-                        <Button size="sm" startContent={<FaArrowLeft />} onClick={() => window.location.reload()}>Go Back</Button>
+                        <Button size="sm" startContent={<span>⬅️</span>} onClick={() => window.location.reload()}>Go Back</Button>
                     </div>
                     : <div className="flex flex-col items-center justify-center gap-4 w-full">
                         <p className={title()}>Rendering Video...</p>
@@ -278,7 +278,7 @@ export const RenderingOutput = ({ renderResult, genError, isGenerated, videoId }
                             className="max-w-md"
                         />
                         <Code>{renderResult ?? "Loading"}</Code>
-                        <Button size="sm" startContent={<FaArrowLeft />} onClick={() => window.location.reload()}>Go Back</Button>
+                        <Button size="sm" startContent={<span>⬅️</span>} onClick={() => window.location.reload()}>Go Back</Button>
                     </div>
                 }
             </>
@@ -330,7 +330,7 @@ const MessageVideoForm: React.FC<MessageVideoFormProps> = ({ setFormData, json, 
         <div className="space-y-4">
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaPhone />
+                    <span>📞</span>
                     <h1 className={title()}>Contact name of person</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the name of the person you want to send the message to.</p>
@@ -341,7 +341,7 @@ const MessageVideoForm: React.FC<MessageVideoFormProps> = ({ setFormData, json, 
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaComment />
+                    <span>💬</span>
                     <h1 className={title()}>{`Message list for ${contactName}`}</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the messages you want to send to the person.</p>
@@ -352,31 +352,31 @@ const MessageVideoForm: React.FC<MessageVideoFormProps> = ({ setFormData, json, 
                     <div className="flex flex-row gap-2 mt-4">
                         <Dropdown>
                             <DropdownTrigger>
-                                <Button startContent={<FaVolumeUp />} endContent={<FaAngleDown />}>{msg.voice.charAt(0).toUpperCase() + msg.voice.slice(1)}</Button>
+                                <Button startContent={<span>🔊</span>} endContent={<span>⬇️</span>}>{msg.voice.charAt(0).toUpperCase() + msg.voice.slice(1)}</Button>
                             </DropdownTrigger>
                             <DropdownMenu onAction={(key) => handleChange(index, 'voice', key.toString())}>
-                                <DropdownItem key="male" startContent={<FaVolumeUp />} description="Speak message in male-like voice">Male</DropdownItem>
-                                <DropdownItem key="female" startContent={<FaVolumeUp />} description="Speak message in female-like voice">Female</DropdownItem>
+                                <DropdownItem key="male" startContent={<span>🔊</span>} description="Speak message in male-like voice">Male</DropdownItem>
+                                <DropdownItem key="female" startContent={<span>🔊</span>} description="Speak message in female-like voice">Female</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                         <Dropdown>
                             <DropdownTrigger>
-                                <Button startContent={msg.msgtype == "sender" ? <FaArrowLeft /> : <FaArrowRight />} endContent={<FaAngleDown />}>{msg.msgtype.charAt(0).toUpperCase() + msg.msgtype.slice(1)}</Button>
+                                <Button startContent={msg.msgtype == "sender" ? <span>⬅️</span> : <span>➡️</span>} endContent={<span>⬇️</span>}>{msg.msgtype.charAt(0).toUpperCase() + msg.msgtype.slice(1)}</Button>
                             </DropdownTrigger>
                             <DropdownMenu onAction={(key) => handleChange(index, 'msgtype', key.toString())}>
-                                <DropdownItem key="sender" startContent={<FaArrowLeft />} description="Message will come from the sender (right side)">Sender</DropdownItem>
-                                <DropdownItem key="receiver" startContent={<FaArrowRight />} description="Message will come from the receiver (left side; the contact name)">Receiver</DropdownItem>
+                                <DropdownItem key="sender" startContent={<span>⬅️</span>} description="Message will come from the sender (right side)">Sender</DropdownItem>
+                                <DropdownItem key="receiver" startContent={<span>➡️</span>} description="Message will come from the receiver (left side; the contact name)">Receiver</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
-                        <Button color='danger' startContent={<FaTrash />} isIconOnly onClick={() => setScript(script.filter((_, i) => i !== index))} />
+                        <Button color='danger' startContent={<span>🗑️</span>} isIconOnly onClick={() => setScript(script.filter((_, i) => i !== index))} />
                     </div>
                 </div>
             ))}
-            <Button onClick={handleAddMessage} startContent={<FaPlus />}>Add Message</Button>
+            <Button onClick={handleAddMessage} startContent={<span>➕</span>}>Add Message</Button>
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaCommentAlt />
+                    <span>💭</span>
                     <h1 className={title()}>Extra script information</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter any extra information you want to include in the script.</p>
@@ -384,7 +384,7 @@ const MessageVideoForm: React.FC<MessageVideoFormProps> = ({ setFormData, json, 
             <Textarea placeholder="Extra" value={extra} onChange={(e) => setExtra(e.target.value)} />
             <Divider />
             <div className="flex justify-center mt-4">
-                <Button color='primary' variant='shadow' size='lg' startContent={<FaSave />} onClick={handleSubmit}>Save Data</Button>
+                <Button color='primary' variant='shadow' size='lg' startContent={<span>💾</span>} onClick={handleSubmit}>Save Data</Button>
             </div>
         </div>
     );
@@ -438,7 +438,7 @@ const QuizVideoForm: React.FC<QuizVideoFormProps> = ({ setFormData, json, isAI }
         <div className="space-y-4">
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaTextHeight />
+                    <span>✏️</span>
                     <h1 className={title()}>Quiz title</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the title of the quiz.</p>
@@ -447,7 +447,7 @@ const QuizVideoForm: React.FC<QuizVideoFormProps> = ({ setFormData, json, isAI }
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaQuestion />
+                    <span>❓</span>
                     <h1 className={title()}>Question and Answer</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the questions and answers for the quiz. {`(${questions.length} questions)`}</p>
@@ -456,16 +456,16 @@ const QuizVideoForm: React.FC<QuizVideoFormProps> = ({ setFormData, json, isAI }
                 <div key={index} className="flex flex-row items-center gap-4">
                     <Input label={`Question #${index + 1}`} value={question.question} onChange={(e) => handleChange(index, 'question', e.target.value)} />
                     <Input label="Answer" value={question.answer} onChange={(e) => handleChange(index, 'answer', e.target.value)} />
-                    <Button color='danger' startContent={<FaTrash />} isIconOnly onClick={() => {
+                    <Button color='danger' startContent={<span>🗑️</span>} isIconOnly onClick={() => {
                         setQuestions(questions.filter((_, i) => i !== index));
                     }} />
                 </div>
             ))}
-            <Button onClick={handleAddQuestion} startContent={<FaPlus />}>Add Question</Button>
+            <Button onClick={handleAddQuestion} startContent={<span>➕</span>}>Add Question</Button>
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaCommentAlt />
+                    <span>💭</span>
                     <h1 className={title()}>Start and End Script</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the start and end script for the quiz.</p>
@@ -474,7 +474,7 @@ const QuizVideoForm: React.FC<QuizVideoFormProps> = ({ setFormData, json, isAI }
             <Textarea placeholder="End Script" value={endScript} onChange={(e) => setEndScript(e.target.value)} />
             <Divider />
             <div className="flex justify-center mt-4">
-                <Button color='primary' variant='shadow' size='lg' startContent={<FaSave />} onClick={handleSubmit}>Save Data</Button>
+                <Button color='primary' variant='shadow' size='lg' startContent={<span>💾</span>} onClick={handleSubmit}>Save Data</Button>
             </div>
         </div>
     );
@@ -536,7 +536,7 @@ const RankVideoForm: React.FC<RankVideoFormProps> = ({ setFormData, json, isAI }
         <div className="space-y-4">
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaTextHeight />
+                    <span>✏️</span>
                     <h1 className={title()}>Rank title</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the title of the rank.</p>
@@ -545,7 +545,7 @@ const RankVideoForm: React.FC<RankVideoFormProps> = ({ setFormData, json, isAI }
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaImage />
+                    <span>🖼️</span>
                     <h1 className={title()}>Ranking and Image</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the rankings and images for the rank video. {`(${rankings.length} rankings)`} </p>
@@ -553,19 +553,19 @@ const RankVideoForm: React.FC<RankVideoFormProps> = ({ setFormData, json, isAI }
             {rankings.map((ranking, index) => (
                 <div key={index} className="flex flex-row items-center gap-4">
                     <Input label={`Ranking #${index + 1}`} value={ranking} onChange={(e) => handleChange(index, rankings, e.target.value)} />
-                    <Input startContent={<FaSearch />} label={`Image #${index + 1}`} value={images[index]} onChange={(e) => handleChange(index, images, e.target.value)} />
-                    <Button color='danger' startContent={<FaTrash />} isIconOnly onClick={() => {
+                    <Input startContent={<span>🔍</span>} label={`Image #${index + 1}`} value={images[index]} onChange={(e) => handleChange(index, images, e.target.value)} />
+                    <Button color='danger' startContent={<span>🗑️</span>} isIconOnly onClick={() => {
                         setRankings(rankings.filter((_, i) => i !== index));
                         setImages(images.filter((_, i) => i !== index));
                     }} />
                 </div>
             ))}
-            <Button onClick={handleAddRanking} startContent={<FaPlus />}>Add Ranking</Button>
+            <Button onClick={handleAddRanking} startContent={<span>➕</span>}>Add Ranking</Button>
 
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaCommentAlt />
+                    <span>💭</span>
                     <h1 className={title()}>Start and End Script</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the start and end script for the rank video.</p>
@@ -574,7 +574,7 @@ const RankVideoForm: React.FC<RankVideoFormProps> = ({ setFormData, json, isAI }
             <Textarea placeholder="End Script" value={endScript} onChange={(e) => setEndScript(e.target.value)} />
             <Divider />
             <div className="flex justify-center mt-4">
-                <Button color='primary' variant='shadow' size='lg' startContent={<FaSave />} onClick={handleSubmit}>Save Data</Button>
+                <Button color='primary' variant='shadow' size='lg' startContent={<span>💾</span>} onClick={handleSubmit}>Save Data</Button>
             </div>
         </div>
     );
@@ -628,7 +628,7 @@ const RatherVideoForm: React.FC<RatherVideoFormProps> = ({ setFormData, json, is
         <div className="space-y-4">
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaTextHeight />
+                    <span>✏️</span>
                     <h1 className={title()}>Title of rather video</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the title of the rather video.</p>
@@ -637,7 +637,7 @@ const RatherVideoForm: React.FC<RatherVideoFormProps> = ({ setFormData, json, is
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaQuestion />
+                    <span>❓</span>
                     <h1 className={title()}>Questions and Answers</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the questions and answers for the rather video. {`(${questions.length} questions)`}</p>
@@ -648,16 +648,16 @@ const RatherVideoForm: React.FC<RatherVideoFormProps> = ({ setFormData, json, is
                     <Input label="Option 2" value={question.option2} placeholder='or [option 2]' onChange={(e) => handleChange(index, 'option2', e.target.value)} />
                     <Input label="Percent 1 (%)" value={question.p1.toString()} onChange={(e) => handleChange(index, 'p1', e.target.value)} />
                     <Input label="Percent 2 (%)" value={question.p2.toString()} onChange={(e) => handleChange(index, 'p2', e.target.value)} />
-                    <Input label="Image 1" value={question.image1} startContent={<FaSearch />} placeholder='Search term...' onChange={(e) => handleChange(index, 'image1', e.target.value)} />
-                    <Input label="Image 2" value={question.image2} startContent={<FaSearch />} placeholder='Search term...' onChange={(e) => handleChange(index, 'image2', e.target.value)} />
-                    <Button color='danger' startContent={<FaTrash />} isIconOnly onClick={() => setQuestions(questions.filter((_, i) => i !== index))} />
+                    <Input label="Image 1" value={question.image1} startContent={<span>🔍</span>} placeholder='Search term...' onChange={(e) => handleChange(index, 'image1', e.target.value)} />
+                    <Input label="Image 2" value={question.image2} startContent={<span>🔍</span>} placeholder='Search term...' onChange={(e) => handleChange(index, 'image2', e.target.value)} />
+                    <Button color='danger' startContent={<span>🗑️</span>} isIconOnly onClick={() => setQuestions(questions.filter((_, i) => i !== index))} />
                 </div>
             ))}
-            <Button onClick={handleAddQuestion} startContent={<FaPlus />}>Add Question</Button>
+            <Button onClick={handleAddQuestion} startContent={<span>➕</span>}>Add Question</Button>
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaCommentAlt />
+                    <span>💭</span>
                     <h1 className={title()}>Start and End Script</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the start and end script for the rather video.</p>
@@ -666,7 +666,7 @@ const RatherVideoForm: React.FC<RatherVideoFormProps> = ({ setFormData, json, is
             <Textarea placeholder="End Script" value={endScript} onChange={(e) => setEndScript(e.target.value)} />
             <Divider />
             <div className="flex justify-center mt-4">
-                <Button color='primary' variant='shadow' size='lg' startContent={<FaSave />} onClick={handleSubmit}>Save Data</Button>
+                <Button color='primary' variant='shadow' size='lg' startContent={<span>💾</span>} onClick={handleSubmit}>Save Data</Button>
             </div>
         </div>
     );
@@ -729,7 +729,7 @@ const TopicVideoForm: React.FC<TopicVideoFormProps> = ({ setFormData, json, isAI
         <div className="space-y-4">
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaTextHeight />
+                    <span>✏️</span>
                     <h1 className={title()}>Title of topic video</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the title of the topic video.</p>
@@ -738,7 +738,7 @@ const TopicVideoForm: React.FC<TopicVideoFormProps> = ({ setFormData, json, isAI
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaNewspaper />
+                    <span>📰</span>
                     <h1 className={title()}>Text script for video</h1>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter the full text script for the topic video.</p>
@@ -747,7 +747,7 @@ const TopicVideoForm: React.FC<TopicVideoFormProps> = ({ setFormData, json, isAI
             <Divider />
             <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                    <FaImage />
+                    <span>🖼️</span>
                     <h1 className={title()}>Images for video</h1>
                 </div>
                 <div className="flex flex-col gap-2 mt-4">
@@ -764,10 +764,10 @@ const TopicVideoForm: React.FC<TopicVideoFormProps> = ({ setFormData, json, isAI
                                 <CardBody>
                                     <div className="flex justify-between items-center gap-2">
                                         <div className="flex items-center gap-2 ml-2">
-                                            <FaImage />
+                                            <span>🖼️</span>
                                             <p>Image {index + 1}</p>
                                         </div>
-                                        <Button color='danger' variant='light' startContent={<FaTrash />} isIconOnly radius='full' onClick={() => setImageOverrides(imageOverrides.filter((_, i) => i !== index))} />
+                                        <Button color='danger' variant='light' startContent={<span>🗑️</span>} isIconOnly radius='full' onClick={() => setImageOverrides(imageOverrides.filter((_, i) => i !== index))} />
                                     </div>
                                     <Image isBlurred src={imageOverrides[index]} width={256} height={256} className='p-2 flex-none shrink-0	' alt={`Image ${index + 1}`} />
                                 </CardBody>
@@ -775,14 +775,14 @@ const TopicVideoForm: React.FC<TopicVideoFormProps> = ({ setFormData, json, isAI
                         ))}
                     </div>
                     : images.map((image, index) => (
-                        <Input startContent={<FaSearch />} key={index} placeholder="Image search term" value={image} onChange={(e) => handleChange(index, e.target.value)}
-                            endContent={<Button color='danger' variant='light' startContent={<FaTrash />} isIconOnly radius='full' onClick={() => setImages(images.filter((_, i) => i !== index))} />}
+                        <Input startContent={<span>🔍</span>} key={index} placeholder="Image search term" value={image} onChange={(e) => handleChange(index, e.target.value)}
+                            endContent={<Button color='danger' variant='light' startContent={<span>🗑️</span>} isIconOnly radius='full' onClick={() => setImages(images.filter((_, i) => i !== index))} />}
                         />
                     ))
             }
             {
                 showImageOverrides ?
-                    <Input type='file' accept="image/*" startContent={<FaUpload />} onChange={(e) => {
+                    <Input type='file' accept="image/*" startContent={<span>📤</span>} onChange={(e) => {
                         const file = e.target.files?.[0];
                         if (!file) return;
                         const reader = new FileReader();
@@ -791,11 +791,11 @@ const TopicVideoForm: React.FC<TopicVideoFormProps> = ({ setFormData, json, isAI
                         };
                         reader.readAsDataURL(file);
                     }} />
-                    : <Button onClick={handleAddImage} startContent={<FaPlus />}>Add Image</Button>
+                    : <Button onClick={handleAddImage} startContent={<span>➕</span>}>Add Image</Button>
             }
             <Divider />
             <div className="flex justify-center mt-4">
-                <Button color='primary' variant='shadow' size='lg' startContent={<FaSave />} onClick={handleSubmit}>Save Data</Button>
+                <Button color='primary' variant='shadow' size='lg' startContent={<span>💾</span>} onClick={handleSubmit}>Save Data</Button>
             </div>
         </div>
 

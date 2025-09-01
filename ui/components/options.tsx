@@ -249,7 +249,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
     return (
         <div>
             <div className="flex items-center gap-2">
-                <FaRobot />
+                <span>🤖</span>
                 <h1 className={title()}>AI Options</h1>
             </div>
             <Divider />
@@ -261,7 +261,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                     </div>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button endContent={<FaAngleDown />}>{selectedAIType.name}</Button>
+                            <Button endContent={<span>🡻</span> }>{selectedAIType.name}</Button>
                         </DropdownTrigger>
 
                         <DropdownMenu onAction={(key) => {
@@ -281,7 +281,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                         <ButtonGroup>
                             {isAiModelError
                                 ? <>
-                                    <Button color='danger' variant='shadow' startContent={<FaExclamationTriangle />} onPress={modelModal.onOpen}>
+                                    <Button color='danger' variant='shadow' startContent={<span>⚠️</span> } onPress={modelModal.onOpen}>
                                         Failed to fetch models
                                     </Button>
                                     <Modal isOpen={modelModal.isOpen} onOpenChange={modelModal.onOpenChange}>
@@ -304,7 +304,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                                 </>
                                 : <Dropdown>
                                     <DropdownTrigger>
-                                        <Button isLoading={selectedAIModel == ""} startContent={<FaRobot />} endContent={<FaAngleDown />}>{
+                                        <Button isLoading={selectedAIModel == ""} startContent={<span>🤖</span> } endContent={<span>🡻</span> }>{
                                             selectedAIModel == "" ? "Loading models" : selectedAIModel
                                         }</Button>
                                     </DropdownTrigger>
@@ -315,7 +315,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                                 </Dropdown>
                             }
                             <Tooltip content="Fetch AI models">
-                                <Button isIconOnly onClick={() => fetchModels()}><FaSync /></Button>
+                                <Button isIconOnly onClick={() => fetchModels()}><span>🔁</span> </Button>
                             </Tooltip>
                         </ButtonGroup>
                     </div>
@@ -326,12 +326,12 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                             <p className={title({ size: 'sm' })}>API Endpoint</p>
                             <p className={subtitle({ size: 'sm' })}>Custom OpenAI compliant endpoint</p>
                         </div>
-                        <Input startContent={<FaGlobe />} isClearable placeholder="Enter API Endpoint" className="w-96" onChange={(e) => setOpenAIEndpoint(e.target.value)} />
+                        <Input startContent={<span>🌐</span> } isClearable placeholder="Enter API Endpoint" className="w-96" onChange={(e) => setOpenAIEndpoint(e.target.value)} />
                     </div>
                 )}
             </div>
             <div className="flex items-center gap-2">
-                <FaFileAudio />
+                <span>💽</span> 
                 <h1 className={title()}>TTS Options</h1>
             </div>
             <Divider />
@@ -343,7 +343,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                     </div>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button endContent={<FaAngleDown />}>{selectedTTSProvider.name}</Button>
+                            <Button endContent={<span>🡻</span> }>{selectedTTSProvider.name}</Button>
                         </DropdownTrigger>
 
                         <DropdownMenu onAction={(key) => setSelectedTTSProvider(config.ttsOptions.find(provider => provider.type === key)!)}>
@@ -357,27 +357,27 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                             <p className={title({ size: 'sm' })}>Voice Model</p>
                             <p className={subtitle({ size: 'sm' })}>Select the voice model (leave empty for default)</p>
                         </div>
-                        <Input startContent={<FaWrench />} isClearable placeholder="Enter voice model" className="w-56" onChange={(e) => setTTSVoiceModel(e.target.value)} />
+                        <Input startContent={<span>🔧</span> } isClearable placeholder="Enter voice model" className="w-56" onChange={(e) => setTTSVoiceModel(e.target.value)} />
                     </div>
                     <div className="flex justify-between my-4">
                         <div>
                             <p className={title({ size: 'sm' })}>Male Voice</p>
                             <p className={subtitle({ size: 'sm' })}>Select the male voice name (leave empty for default)</p>
                         </div>
-                        <Input startContent={<FaRegFileAudio />} isClearable placeholder="Enter male voice" className="w-56" onChange={(e) => setTTSModelMale(e.target.value)} />
+                        <Input startContent={<span>🎶</span> } isClearable placeholder="Enter male voice" className="w-56" onChange={(e) => setTTSModelMale(e.target.value)} />
                     </div>
                     <div className="flex justify-between my-4">
                         <div>
                             <p className={title({ size: 'sm' })}>Female Voice</p>
                             <p className={subtitle({ size: 'sm' })}>Select the female voice name (leave empty for default)</p>
                         </div>
-                        <Input startContent={<FaRegFileAudio />} isClearable placeholder="Enter female voice" className="w-56" onChange={(e) => setTTSModelFemale(e.target.value)} />
+                        <Input startContent={<span>🎶</span> } isClearable placeholder="Enter female voice" className="w-56" onChange={(e) => setTTSModelFemale(e.target.value)} />
                     </div>
                 </>
                 }
             </div>
             <div className="flex items-center gap-2">
-                <FaPhotoVideo />
+                <span>🎞️</span> 
                 <h1 className={title()}>Image Options</h1>
             </div>
             <Divider />
@@ -389,7 +389,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                     </div>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button startContent={selectedImageType.style == "ai" ? <FaMagic /> : <FaSearch />} endContent={<FaAngleDown />}>{selectedImageType.name}</Button>
+                            <Button startContent={selectedImageType.style == "ai" ? <span>🌐</span>  : <span>🔍</span> } endContent={<span>🡻</span> }>{selectedImageType.name}</Button>
                         </DropdownTrigger>
 
                         <DropdownMenu onAction={(key) => setSelectedImageType(config.imageTypes.find(provider => provider.type === key)!)}>
@@ -406,20 +406,20 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                                 <p className={title({ size: 'sm' })}>AI Image Model</p>
                                 <p className={subtitle({ size: 'sm' })}>Select the AI image model (leave empty for default)</p>
                             </div>
-                            <Input startContent={<FaSlidersH />} isClearable placeholder="Enter AI image model" className="w-56" onChange={(e) => setAiImageModel(e.target.value)} />
+                            <Input startContent={<span>📐</span> } isClearable placeholder="Enter AI image model" className="w-56" onChange={(e) => setAiImageModel(e.target.value)} />
                         </div>
                         <div className="flex justify-between my-4">
                             <div>
                                 <p className={title({ size: 'sm' })}>AI Image Prompt</p>
                                 <p className={subtitle({ size: 'sm' })}>Enter the AI image prompt (put styles, etc.) (leave empty for default)</p>
                             </div>
-                            <Input startContent={<FaMagic />} isClearable placeholder="Enter AI image prompt" className="w-56" onChange={(e) => setAiImagePrompt(e.target.value)} />
+                            <Input startContent={<span>🌐</span> } isClearable placeholder="Enter AI image prompt" className="w-56" onChange={(e) => setAiImagePrompt(e.target.value)} />
                         </div>
                     </> : null
                 }
             </div>
             <div className="flex items-center gap-2">
-                <FaTextWidth />
+                <span>🔠</span> 
                 <h1 className={title()}>Subtitle Options</h1>
             </div>
             <Divider />
@@ -431,7 +431,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                     </div>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button endContent={<FaAngleDown />}>{selectedSubtitleModel.name}</Button>
+                            <Button endContent={<span>🡻</span> }>{selectedSubtitleModel.name}</Button>
                         </DropdownTrigger>
 
                         <DropdownMenu onAction={(key) => setSelectedSubtitleModel(config.subtitleOptions.find(model => model.type === key)!)}>
@@ -444,32 +444,32 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                         <p className={title({ size: 'sm' })}>Subtitle Length</p>
                         <p className={subtitle({ size: 'sm' })}>Maximum length for token (leave empty for default)</p>
                     </div>
-                    <Input startContent={<FaTextWidth />} isClearable placeholder="Enter subtitle length" className="w-56" onChange={(e) => setSubLen(parseInt(e.target.value) ?? 0)} />
+                    <Input startContent={<span>🔠</span> } isClearable placeholder="Enter subtitle length" className="w-56" onChange={(e) => setSubLen(parseInt(e.target.value) ?? 0)} />
                 </div>
                 <div className="flex justify-between my-4">
                     <div>
                         <p className={title({ size: 'sm' })}>Font Name</p>
                         <p className={subtitle({ size: 'sm' })}>Font name for subtitles (leave empty for default)</p>
                     </div>
-                    <Input startContent={<FaFont />} isClearable placeholder="Enter font name" className="w-56" onChange={(e) => setFontName(e.target.value)} />
+                    <Input startContent={<span>🗛</span> } isClearable placeholder="Enter font name" className="w-56" onChange={(e) => setFontName(e.target.value)} />
                 </div>
                 <div className="flex justify-between my-4">
                     <div>
                         <p className={title({ size: 'sm' })}>Font Size</p>
                         <p className={subtitle({ size: 'sm' })}>Font size for subtitles (leave empty for default)</p>
                     </div>
-                    <Input type="number" startContent={<FaTextHeight />} isClearable placeholder="Enter font size" className="w-56" min={0} max={300} onChange={(e) => setFontSize(parseInt(e.target.value) ?? 0)} />
+                    <Input type="number" startContent={<span>🔠</span> } isClearable placeholder="Enter font size" className="w-56" min={0} max={300} onChange={(e) => setFontSize(parseInt(e.target.value) ?? 0)} />
                 </div>
                 <div className="flex justify-between my-4">
                     <div>
                         <p className={title({ size: 'sm' })}>Font Color</p>
                         <p className={subtitle({ size: 'sm' })}>Font color for subtitles (hex with #) (leave empty for default)</p>
                     </div>
-                    {/* <Input startContent={<FaEyeDropper />} isClearable placeholder="Enter font color" className="w-56" onChange={(e) => setFontColor(e.target.value)} /> */}
+                    {/* <Input startContent={<span>🪬</span> } isClearable placeholder="Enter font color" className="w-56" onChange={(e) => setFontColor(e.target.value)} /> */}
                     {showFontColorPicker ? (
                         <HexColorPicker color={fontColor} onChange={(e) => setFontColor(e)} />
                     ) : (
-                        <Button startContent={<FaEyeDropper />} onClick={() => setShowFontColorPicker(true)}>Choose Font Color</Button>
+                        <Button startContent={<span>🪬</span> } onClick={() => setShowFontColorPicker(true)}>Choose Font Color</Button>
                     )}
                 </div>
                 <div className="flex justify-between my-4">
@@ -477,11 +477,11 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                         <p className={title({ size: 'sm' })}>Stroke Color</p>
                         <p className={subtitle({ size: 'sm' })}>Stroke color for subtitles (hex with #) (leave empty for default)</p>
                     </div>
-                    {/* <Input startContent={<FaEyeDropper />} isClearable placeholder="Enter stroke color" className="w-56" onChange={(e) => setStrokeColor(e.target.value)} /> */}
+                    {/* <Input startContent={<span>🪬</span> } isClearable placeholder="Enter stroke color" className="w-56" onChange={(e) => setStrokeColor(e.target.value)} /> */}
                     {showStrokeColorPicker ? (
                         <HexColorPicker color={strokeColor} onChange={(e) => setStrokeColor(e)} />
                     ) : (
-                        <Button startContent={<FaEyeDropper />} onClick={() => setShowStrokeColorPicker(true)}>Choose Stroke Color</Button>
+                        <Button startContent={<span>🪬</span> } onClick={() => setShowStrokeColorPicker(true)}>Choose Stroke Color</Button>
                     )}
                 </div>
                 <div className="flex justify-between my-4">
@@ -489,7 +489,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                         <p className={title({ size: 'sm' })}>Stroke Width</p>
                         <p className={subtitle({ size: 'sm' })}>Stroke width for subtitles (leave empty for default)</p>
                     </div>
-                    <Input type="number" startContent={<FaArrowsAltH />} isClearable placeholder="Enter stroke width" className="w-56" min={0} max={100} onChange={(e) => setStrokeWidth(parseInt(e.target.value))} />
+                    <Input type="number" startContent={<span>⟺</span>} isClearable placeholder="Enter stroke width" className="w-56" min={0} max={100} onChange={(e) => setStrokeWidth(parseInt(e.target.value))} />
                 </div>
                 <div className="flex justify-center">
                     <h1 style={{
@@ -504,7 +504,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <FaVideo />
+                <span>📹</span> 
                 <h1 className={title()}>Video Options</h1>
             </div>
             <Divider />
@@ -538,7 +538,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                                 {
                                     isBgVideosError
                                         ? <>
-                                            <Button color='danger' variant='shadow' startContent={<FaExclamationTriangle />} onPress={bgVideoModal.onOpen}>
+                                            <Button color='danger' variant='shadow' startContent={<span>⚠️</span> } onPress={bgVideoModal.onOpen}>
                                                 Failed to fetch videos
                                             </Button>
                                             <Modal isOpen={bgVideoModal.isOpen} onOpenChange={bgVideoModal.onOpenChange}>
@@ -560,19 +560,19 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                                             </Modal>
                                         </>
                                         : <DropdownTrigger>
-                                            <Button isLoading={selectedBgVideo == ""} startContent={<FaVideo />} endContent={<FaAngleDown />}>{selectedBgVideo == "" ? "Loading backgrounds" : selectedBgVideo}</Button>
+                                            <Button isLoading={selectedBgVideo == ""} startContent={<span>📹</span> } endContent={<span>🡻</span> }>{selectedBgVideo == "" ? "Loading backgrounds" : selectedBgVideo}</Button>
                                         </DropdownTrigger>
                                 }
 
                                 <DropdownMenu className="max-h-[50vh] overflow-y-auto" onAction={(key) => setSelectedBgVideo(key.toString())}>
-                                    {bgVideos.map(bg => <DropdownItem key={bg} startContent={<FaVideo />}>{bg}</DropdownItem>)}
+                                    {bgVideos.map(bg => <DropdownItem key={bg} startContent={<span>📹</span> }>{bg}</DropdownItem>)}
                                 </DropdownMenu>
                             </Dropdown>
                             <Tooltip content="Fetch background videos">
-                                <Button isIconOnly onClick={() => fetchBgVideos()}><FaSync /></Button>
+                                <Button isIconOnly onClick={() => fetchBgVideos()}><span>🔁</span> </Button>
                             </Tooltip>
                             <Tooltip content="Random background video">
-                                <Button isIconOnly onClick={() => setSelectedBgVideo(bgVideos[Math.floor(Math.random() * bgVideos.length)])}><FaRandom /></Button>
+                                <Button isIconOnly onClick={() => setSelectedBgVideo(bgVideos[Math.floor(Math.random() * bgVideos.length)])}><span>🔀</span> </Button>
                             </Tooltip>
                         </ButtonGroup>
                     </div>
@@ -588,7 +588,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                                 {
                                     isBgAudioError
                                         ? <>
-                                            <Button color='danger' variant='shadow' startContent={<FaExclamationTriangle />} onPress={bgAudioModal.onOpen}>
+                                            <Button color='danger' variant='shadow' startContent={<span>⚠️</span> } onPress={bgAudioModal.onOpen}>
                                                 Failed to fetch audio
                                             </Button>
                                             <Modal isOpen={bgAudioModal.isOpen} onOpenChange={bgAudioModal.onOpenChange}>
@@ -610,19 +610,19 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                                             </Modal>
                                         </>
                                         : <DropdownTrigger>
-                                            <Button isLoading={selectedBgAudio == ""} startContent={<FaVolumeUp />} endContent={<FaAngleDown />}>{selectedBgAudio == "" ? "Loading sounds" : selectedBgAudio}</Button>
+                                            <Button isLoading={selectedBgAudio == ""} startContent={<span>⬆️</span> } endContent={<span>🡻</span> }>{selectedBgAudio == "" ? "Loading sounds" : selectedBgAudio}</Button>
                                         </DropdownTrigger>
                                 }
 
                                 <DropdownMenu className="max-h-[50vh] overflow-y-auto" onAction={(key) => setSelectedBgAudio(key.toString())}>
-                                    {bgAudio.map(sound => <DropdownItem key={sound} startContent={<FaVolumeUp />}>{sound}</DropdownItem>)}
+                                    {bgAudio.map(sound => <DropdownItem key={sound} startContent={<span>⬆️</span> }>{sound}</DropdownItem>)}
                                 </DropdownMenu>
                             </Dropdown>
                             <Tooltip content="Fetch background sounds">
-                                <Button isIconOnly onClick={() => fetchBgAudio()}><FaSync /></Button>
+                                <Button isIconOnly onClick={() => fetchBgAudio()}><span>🔁</span> </Button>
                             </Tooltip>
                             <Tooltip content="Random background sound">
-                                <Button isIconOnly onClick={() => setSelectedBgAudio(bgAudio[Math.floor(Math.random() * bgAudio.length)])}><FaRandom /></Button>
+                                <Button isIconOnly onClick={() => setSelectedBgAudio(bgAudio[Math.floor(Math.random() * bgAudio.length)])}><span>🔀</span> </Button>
                             </Tooltip>
                         </ButtonGroup>
                     </div>
@@ -635,7 +635,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                     </div>
                     <Dropdown>
                         <DropdownTrigger>
-                            <Button endContent={<FaAngleDown />}>{selectedOrientation}</Button>
+                            <Button endContent={<span>🡻</span> }>{selectedOrientation}</Button>
                         </DropdownTrigger>
 
                         <DropdownMenu onAction={(key) => setSelectedOrientation(key.toString())} >
@@ -645,7 +645,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <FaSlidersH />
+                <span>📐</span> 
                 <h1 className={title()}>Misc Options</h1>
             </div>
             <Divider />
@@ -667,7 +667,7 @@ export default function AdvancedOptions({ setAdvancedOptions }: { setAdvancedOpt
             </div>
             <Divider />
             <div className="flex justify-center mt-4">
-                <Button color='primary' variant='shadow' size='lg' startContent={<FaSave />} onPress={() => {
+                <Button color='primary' variant='shadow' size='lg' startContent={<span>💾</span> } onPress={() => {
                     setAdvancedOptions({
                         aiType: selectedAIType.type,
                         aiModel: selectedAIModel,

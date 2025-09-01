@@ -88,13 +88,13 @@ export default function AIGen() {
         isAIRunning ? <AIOutput aiRepsonse={aiRepsonse} aiError={aiError} options={advancedOptions} /> :
             <div className="flex flex-col items-center justify-center gap-4 w-full">
                 <div className="flex items-center gap-4">
-                    <FaVideo size={32} />
+                    <span>🎥</span>
                     <p className={title()}>Generate video with AI!</p>
                 </div>
                 <p className={subtitle({ size: 'sm' })}>Enter a prompt for the AI to generate a video.</p>
                 <Input
                     variant="faded"
-                    startContent={<FaMagic />}
+                    startContent={<span>🎥</span>}
                     placeholder="Enter prompt..."
                     size='lg'
                     isClearable
@@ -103,16 +103,16 @@ export default function AIGen() {
                 />
                 <div className="flex flex-row gap-2 overflow-x-auto max-w-full">
                     {promptSuggestions.map((suggestion, _) => (
-                        <Chip variant="bordered" endContent={<FaArrowUp className="m-2 rotate-45" />} className="text-xs cursor-pointer " onClick={() => setPrompt(suggestion)} key={suggestion}>{suggestion}</Chip>
+                        <Chip variant="bordered" endContent={<span>🔼</span>} className="text-xs cursor-pointer " onClick={() => setPrompt(suggestion)} key={suggestion}>{suggestion}</Chip>
                     ))}
                 </div>
                 <Divider />
                 <Accordion>
-                    <AccordionItem startContent={<FaCogs />} title="Advanced Options" subtitle='Change options such as AI model, TTS voice, background music, etc.'>
+                    <AccordionItem startContent={<span>⚙️</span>} title="Advanced Options" subtitle='Change options such as AI model, TTS voice, background music, etc.'>
                         <AdvancedOptions setAdvancedOptions={setAdvancedOptions} />
                     </AccordionItem>
                 </Accordion>
-                <Button startContent={<FaMagic />} variant='shadow' color='primary' size="lg" onClick={openModal}>Render Video</Button>
+                <Button startContent={<span>🎥</span>} variant='shadow' color='primary' size="lg" onClick={openModal}>Render Video</Button>
                 <ConfirmModal confirmModal={confirmModal} advancedOptions={advancedOptions} renderVideo={renderVideo} usedDefaultOptions={usedDefaultOptions} />
             </div>
     );
@@ -135,7 +135,7 @@ export const AIOutput = ({ aiRepsonse, aiError, options }: { aiRepsonse: string 
                     <p className={title()}>Error generating video with AI</p>
                     <p className={subtitle({ size: 'sm' })}>An error occurred while generating the video script with AI. Please check the error message below.</p>
                     <Chip color='danger' variant='shadow'>{aiError}</Chip>
-                    <Button size="sm" startContent={<FaArrowLeft />} onClick={() => window.location.reload()}>Go Back</Button>
+                    <Button size="sm" startContent={<span>🔼</span>} onClick={() => window.location.reload()}>Go Back</Button>
                 </div>
                     : <div className="flex flex-col items-center justify-center gap-4 w-full">
                         <p className={title()}>AI is generating the video script</p>

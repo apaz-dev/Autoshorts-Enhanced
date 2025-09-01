@@ -304,7 +304,7 @@ The following code snippet shows how to add UI elements for the new option type.
 // ... (continued)
 
         <div className="flex items-center gap-2">
-                <FaTextWidth />
+                <span>🡩</span>
                 <h1 className={title()}>Sound Options</h1>
             </div>
             <Divider />
